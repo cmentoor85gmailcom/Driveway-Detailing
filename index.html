@@ -5,168 +5,255 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Driveway Detailing</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans&display=swap" rel="stylesheet" />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-  <!-- AOS CSS for scroll animations -->
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <!-- Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
   <style>
-    body {
-      font-family: 'Open Sans', sans-serif;
-      scroll-behavior: smooth;
-      margin: 0;
-      padding: 0;
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
     }
-
-    h1, h2, h3 {
-      font-family: 'Montserrat', sans-serif;
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f6f6f6;
+      color: #222;
+      line-height: 1.6;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     /* Navbar */
-    .navbar {
-      background-color: #222;
-    }
-    .navbar-brand, .navbar-nav .nav-link {
-      color: #fff !important;
+    nav {
+      position: fixed;
+      width: 100%;
+      background: transparent;
+      top: 0; left: 0;
+      z-index: 9999;
+      transition: background 0.3s ease;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+    }
+    nav.scrolled {
+      background: rgba(0,0,0,0.85);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    nav .logo {
+      font-size: 1.8rem;
+      color: #fff;
       cursor: pointer;
+      letter-spacing: 1px;
     }
-    .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active {
-      color: #f7b733 !important;
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
     }
-    .navbar-toggler {
-      border-color: rgba(255, 255, 255, 0.1);
+    nav ul li a {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      position: relative;
+      padding: 5px 0;
     }
-    .navbar-toggler-icon {
-      filter: invert(1);
+    nav ul li a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #f7b733;
+      transition: 0.3s;
+    }
+    nav ul li a:hover::after,
+    nav ul li a.active::after {
+      width: 100%;
     }
 
     /* Hero */
-    #hero {
+    header {
       height: 100vh;
-      background: url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+      position: relative;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: white;
+      color: #fff;
       text-align: center;
-      padding: 0 15px;
-      position: relative;
-      z-index: 1;
+      padding: 0 1rem;
     }
-    #hero::before {
+    header::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: -1;
+      background: rgba(0,0,0,0.55);
+      z-index: 0;
     }
-    #hero h1 {
-      font-size: 3.5rem;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-      margin-bottom: 0.5rem;
+    header .hero-content {
+      position: relative;
+      max-width: 900px;
+      z-index: 1;
     }
-    #hero p {
-      font-size: 1.5rem;
-      text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
-      margin-bottom: 1.5rem;
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.8rem;
+      margin-bottom: 1rem;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.7);
     }
-    #hero .btn-book {
+    header p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      font-weight: 500;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+    header .btn {
       background: #f7b733;
-      border: none;
-      font-weight: 700;
-      padding: 0.75rem 2rem;
-      font-size: 1.25rem;
+      padding: 0.85rem 3rem;
       color: #222;
-      border-radius: 50px;
-      transition: background-color 0.3s ease;
-      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 40px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(247, 183, 51, 0.6);
+      transition: background 0.3s ease;
     }
-    #hero .btn-book:hover {
+    header .btn:hover {
       background: #e1a12f;
       color: #fff;
     }
 
-    /* Highlight background */
-    .highlight-bg {
-      background-color: #e0e0e0;
-      padding: 0.3rem 0.6rem;
-      border-radius: 4px;
-      font-weight: 600;
-      display: inline-block;
+    /* Sections common styles */
+    section {
+      padding: 5rem 2rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
     }
-
-    /* Packages */
-    #packages {
-      padding-top: 70px; /* offset for navbar */
-      padding-bottom: 3rem;
-    }
-    .package-price {
-      font-size: 1.7rem;
+    section h2 {
+      font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      color: #f7b733;
-      margin-bottom: 0.5rem;
+      font-size: 2.8rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #222;
     }
 
-    /* Gallery */
-    #gallery {
-      padding-top: 70px;
-      padding-bottom: 3rem;
+    /* Packages Section */
+    #packages .package-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap: 2rem;
     }
-    .gallery-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
+    #packages .package {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgb(0 0 0 / 0.1);
       transition: transform 0.3s ease;
-      cursor: pointer;
+      cursor: default;
     }
-    .gallery-img:hover {
+    #packages .package:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgb(0 0 0 / 0.15);
+    }
+    #packages .package h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #f7b733;
+    }
+    #packages .price {
+      font-weight: 700;
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: #222;
+    }
+    #packages .package ul {
+      list-style: none;
+      padding-left: 0;
+      color: #555;
+    }
+    #packages .package ul li {
+      margin-bottom: 0.7rem;
+      font-weight: 500;
+    }
+
+    /* Gallery Section */
+    #gallery .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 15px;
+    }
+    #gallery img {
+      width: 100%;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+      object-fit: cover;
+      height: 180px;
+    }
+    #gallery img:hover {
       transform: scale(1.05);
-      box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 25px rgb(0 0 0 / 0.15);
     }
 
     /* Testimonials */
     #testimonials {
-      background-color: #f7f7f7;
-      padding: 3rem 0;
-      padding-top: 70px;
-      padding-bottom: 3rem;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgb(0 0 0 / 0.1);
+      padding: 3rem 2rem;
+      max-width: 800px;
+      margin: 0 auto;
     }
-    .testimonial {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
-      margin-bottom: 1.5rem;
+    #testimonials .testimonial {
+      margin-bottom: 2rem;
       font-style: italic;
-    }
-    .testimonial p {
-      margin-bottom: 1rem;
+      font-size: 1.1rem;
       color: #333;
     }
-    .testimonial .author {
+    #testimonials .author {
+      margin-top: 1rem;
       font-weight: 700;
       color: #f7b733;
       text-align: right;
+      font-family: 'Montserrat', sans-serif;
     }
 
-    /* Contact */
+    /* Contact Section */
     #contact {
-      padding-top: 70px;
-      padding-bottom: 3rem;
-      background-color: #fafafa;
+      background: #222;
+      color: #fff;
       text-align: center;
+      padding: 4rem 2rem;
+      border-radius: 12px;
+      max-width: 700px;
+      margin: 0 auto 5rem;
+    }
+    #contact h2 {
+      color: #f7b733;
+      margin-bottom: 2rem;
+    }
+    #contact p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
     }
     #contact a {
       color: #f7b733;
       font-weight: 600;
-      text-decoration: none;
     }
     #contact a:hover {
       text-decoration: underline;
@@ -174,191 +261,252 @@
 
     /* Footer */
     footer {
-      background-color: #222;
-      color: #fff;
-      padding: 1rem 0;
       text-align: center;
+      padding: 1.5rem 1rem;
       font-size: 0.9rem;
-      margin-top: 3rem;
+      color: #888;
+      background: #f6f6f6;
     }
 
-    /* Responsive Adjustments */
+    /* Floating Contact Buttons */
+    .floating-contact {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 10000;
+    }
+    .floating-contact a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      color: white;
+      font-size: 28px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .whatsapp-btn {
+      background-color: #25D366;
+    }
+    .whatsapp-btn:hover {
+      background-color: #1da851;
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(37,211,102,0.7);
+    }
+    .instagram-btn {
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    }
+    .instagram-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(214,36,159,0.7);
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      #hero h1 {
+      nav ul {
+        display: none;
+      }
+      nav .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        color: #fff;
+        cursor: pointer;
+      }
+      nav.active ul {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        right: 0;
+        background: rgba(0,0,0,0.9);
+        width: 200px;
+        padding: 1rem;
+        border-radius: 0 0 0 12px;
+      }
+      nav.active ul li {
+        margin-bottom: 1rem;
+      }
+      header h1 {
         font-size: 2.5rem;
       }
-      #hero p {
-        font-size: 1.2rem;
+      header p {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="#hero">Driveway Detailing</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav fs-5">
-          <li class="nav-item"><a class="nav-link" href="#packages">Packages</a></li>
-          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
+  <nav id="navbar">
+    <div class="logo">Driveway Detailing</div>
+    <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+    <ul>
+      <li><a href="#packages" class="active">Packages</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </nav>
 
-  <!-- Hero -->
-  <section id="hero">
-    <h1 data-aos="fade-down">Driveway Detailing</h1>
-    <p data-aos="fade-up" data-aos-delay="200">Mobile Car Wash & Detailing in Paarl / Wellington</p>
-    <a href="#contact" class="btn btn-book" data-aos="zoom-in" data-aos-delay="400">Book Now</a>
-  </section>
+  <header>
+    <div class="hero-content" data-aos="fade-up">
+      <h1>Driveway Detailing</h1>
+      <p>Mobile Car Wash & Detailing in Paarl / Wellington</p>
+      <a href="#contact" class="btn">Book Now</a>
+    </div>
+  </header>
 
-  <!-- Packages -->
-  <section id="packages" class="container" >
-    <h2 class="text-center mb-4" data-aos="fade-up">Our Packages</h2>
-
-    <div class="row gy-5">
-      <div class="col-md-6" data-aos="fade-right">
+  <section id="packages">
+    <h2>Our Packages</h2>
+    <div class="package-list">
+      <div class="package" data-aos="fade-up" data-aos-delay="100">
         <h3>The Mountain Top</h3>
-        <p class="package-price">R 300,00</p>
+        <div class="price">R 300,00</div>
         <ul>
-          <li><span class="highlight-bg">Complete Wash</span></li>
-          <li><span class="highlight-bg">Full Interior Detailing</span></li>
-          <li><span class="highlight-bg">Tire Shine</span></li>
-          <li><span class="highlight-bg">Leather Conditioning</span></li>
-          <li><span class="highlight-bg">Paint / Wax Protection</span></li>
+          <li>Complete Wash</li>
+          <li>Full Interior Detailing</li>
+          <li>Tire Shine</li>
+          <li>Leather Conditioning</li>
+          <li>Paint / Wax Protection</li>
         </ul>
       </div>
-
-      <div class="col-md-6" data-aos="fade-left">
+      <div class="package" data-aos="fade-up" data-aos-delay="200">
         <h3>The Ark</h3>
-        <p class="package-price">R 250,00</p>
+        <div class="price">R 250,00</div>
         <ul>
-          <li><span class="highlight-bg">Basic Exterior Wash</span></li>
-          <li><span class="highlight-bg">Interior Vacuuming</span></li>
-          <li><span class="highlight-bg">Window Cleaning</span></li>
-          <li><span class="highlight-bg">Paint Protection</span></li>
-          <li><span class="highlight-bg">Tire Shine</span></li>
+          <li>Basic Exterior Wash</li>
+          <li>Interior Vacuuming</li>
+          <li>Window Cleaning</li>
+          <li>Paint Protection</li>
+          <li>Tire Shine</li>
         </ul>
       </div>
-
-      <div class="col-md-6" data-aos="fade-right" data-aos-delay="100">
+      <div class="package" data-aos="fade-up" data-aos-delay="300">
         <h3>Engine Detailing</h3>
-        <p class="package-price">R 150,00</p>
+        <div class="price">R 150,00</div>
         <ul>
-          <li><span class="highlight-bg">Removes Dirt and Grease Build-up</span></li>
-          <li><span class="highlight-bg">Enhances Performance and Aesthetics</span></li>
+          <li>Removes Dirt and Grease Build-up</li>
+          <li>Enhances Performance and Aesthetics</li>
         </ul>
       </div>
-
-      <div class="col-md-6" data-aos="fade-left" data-aos-delay="100">
+      <div class="package" data-aos="fade-up" data-aos-delay="400">
         <h3>Washes</h3>
-        <p class="package-price">R 150,00</p>
+        <div class="price">R 150,00</div>
         <ul>
-          <li><span class="highlight-bg">Wash / Dry Exterior</span></li>
-          <li><span class="highlight-bg">Interior Cleaning</span></li>
+          <li>Wash / Dry Exterior</li>
+          <li>Interior Cleaning</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- Gallery -->
-  <section id="gallery" class="container" >
-    <h2 class="text-center mb-4" data-aos="fade-up">Gallery</h2>
-    <div class="row g-3">
-      <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Gallery Image 1" class="gallery-img rounded" />
-      </div>
-      <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
-        <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=400&q=80" alt="Gallery Image 2" class="gallery-img rounded" />
-      </div>
-      <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
-        <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=400&q=80" alt="Gallery Image 3" class="gallery-img rounded" />
-      </div>
-      <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
-        <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80" alt="Gallery Image 4" class="gallery-img rounded" />
-      </div>
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <div class="grid">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Car Wash 1" />
+      <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=600&q=80" alt="Car Wash 2" />
+      <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=600&q=80" alt="Car Wash 3" />
+      <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=600&q=80" alt="Car Wash 4" />
     </div>
   </section>
 
-  <!-- Testimonials -->
-  <section id="testimonials" class="container" >
-    <h2 class="text-center mb-4" data-aos="fade-up">Testimonials</h2>
-    <div class="row justify-content-center">
-      <div class="col-md-8" data-aos="fade-up" data-aos-delay="100">
-        <div class="testimonial">
-          <p>"Driveway Detailing gave my car the ultimate shine! Highly professional and trustworthy service."</p>
-          <div class="author">– Sarah M.</div>
-        </div>
-      </div>
-      <div class="col-md-8" data-aos="fade-up" data-aos-delay="200">
-        <div class="testimonial">
-          <p>"Quick, affordable, and the results exceeded my expectations. My car looks brand new!"</p>
-          <div class="author">– Johan P.</div>
-        </div>
-      </div>
+  <section id="testimonials">
+    <h2>Testimonials</h2>
+    <div class="testimonial" data-aos="fade-up" data-aos-delay="100">
+      <p>"Driveway Detailing gave my car the ultimate shine! Highly professional and trustworthy service."</p>
+      <div class="author">– Sarah M.</div>
+    </div>
+    <div class="testimonial" data-aos="fade-up" data-aos-delay="200">
+      <p>"Quick, affordable, and the results exceeded my expectations. My car looks brand new!"</p>
+      <div class="author">– Johan P.</div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="bg-light py-5">
-    <div class="container text-center">
-      <h2 data-aos="fade-up" class="mb-4">Contact Us</h2>
-      <p data-aos="fade-up" data-aos-delay="100"><strong>Phone:</strong> <a href="tel:+27660642112">+27 66 064 2112</a></p>
-      <p data-aos="fade-up" data-aos-delay="200"><strong>Email:</strong> <a href="mailto:ddmobilecarwash24@gmail.com">ddmobilecarwash24@gmail.com</a></p>
-      <p data-aos="fade-up" data-aos-delay="300"><strong>Instagram:</strong> <a href="https://www.instagram.com/driveway_detailing/" target="blank" rel="noopener">@_driveway_detailing</a></p>
-      <p data-aos="fade-up" data-aos-delay="400"><strong>Operating Area:</strong> Paarl / Wellington, South Africa</p>
-    </div>
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p><strong>Phone:</strong> <a href="tel:+27660642112">+27 66 064 2112</a></p>
+    <p><strong>Email:</strong> <a href="mailto:ddmobilecarwash24@gmail.com">ddmobilecarwash24@gmail.com</a></p>
+    <p><strong>Instagram:</strong> <a href="https://www.instagram.com/driveway_detailing/" target="blank" rel="noopener">@_driveway_detailing</a></p>
+    <p><strong>Operating Area:</strong> Paarl / Wellington, South Africa</p>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Driveway Detailing. All rights reserved.</p>
+    &copy; 2025 Driveway Detailing. All rights reserved.
   </footer>
 
-  <!-- Bootstrap JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- AOS JS -->
+  <!-- Floating Contact Buttons -->
+  <div class="floating-contact">
+    <a href="https://wa.me/27660642112" target="_blank" aria-label="WhatsApp" class="whatsapp-btn" rel="noopener">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.instagram.com/driveway_detailing/" target="_blank" aria-label="Instagram" class="instagram-btn" rel="noopener">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
     AOS.init({
-      once: true,
-      duration: 700,
+      duration: 800,
+      once: true
     });
 
-    // Highlight current nav link on scroll
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
+    // Navbar scroll background
+    const navbar = document.getElementById('navbar');
+    const navLinks = navbar.querySelectorAll('ul li a');
+    const sections = [...document.querySelectorAll('section, header')];
 
-    function activateNavLink() {
-      let scrollY = window.pageYOffset;
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
 
+      // Highlight active nav link
+      let current = '';
       sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 80; // navbar height offset
-        const sectionId = section.getAttribute('id');
-
-        if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-          navLinks.forEach(link => {
-            link.classList.remove('active');
-            if(link.getAttribute('href') === '#' + sectionId) {
-              link.classList.add('active');
-            }
-          });
+        const sectionTop = section.offsetTop - 80;
+        if(window.scrollY >= sectionTop) {
+          current = section.getAttribute('id') || 'hero';
         }
       });
-    }
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('href').substring(1) === current) {
+          link.classList.add('active');
+        }
+      });
+    });
 
-    window.addEventListener('scroll', activateNavLink);
-    window.addEventListener('load', activateNavLink);
+    // Mobile menu toggle
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu.addEventListener('click', () => {
+      navbar.classList.toggle('active');
+    });
+
+    // Smooth scroll for nav links
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = targetId === 'hero' ? document.querySelector('header') : document.getElementById(targetId);
+        if(targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }
+        navbar.classList.remove('active');
+      });
+    });
   </script>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
 </body>
 </html>
