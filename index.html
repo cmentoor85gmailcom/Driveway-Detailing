@@ -1,478 +1,228 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Driveway Detailing</title>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-
-  <!-- Icons -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Driveway Detailing — Mobile Car Wash</title>
+  <meta name="description" content="Driveway Detailing - Mobile car wash & detailing. Professional packages, add-ons, and mobile service.">
   <style>
-    /* Reset and base */
-    * {
-      box-sizing: border-box;
-      margin: 0; padding: 0;
+    :root{
+      --bg:#0b0b0b;
+      --muted:#9aa0a6;
+      --accent:#00c853;
+      --card:#0f0f0f;
+      --glass: rgba(255,255,255,0.03);
+      --container: 1100px;
+      --radius:8px;
+      --shadow: 0 6px 20px rgba(0,0,0,0.6);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f6f6f6;
-      color: #222;
-      line-height: 1.6;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* Navbar */
-    nav {
-      position: fixed;
-      width: 100%;
-      background: transparent;
-      top: 0; left: 0;
-      z-index: 9999;
-      transition: background 0.3s ease;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 600;
-      font-family: 'Montserrat', sans-serif;
-    }
-    nav.scrolled {
-      background: rgba(0,0,0,0.85);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    }
-    nav .logo {
-      font-size: 1.8rem;
-      color: #fff;
-      cursor: pointer;
-      letter-spacing: 1px;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-    }
-    nav ul li a {
-      color: #fff;
-      font-weight: 600;
-      font-size: 1rem;
-      position: relative;
-      padding: 5px 0;
-    }
-    nav ul li a::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background: #4CAF50;
-      transition: 0.3s;
-    }
-    nav ul li a:hover::after,
-    nav ul li a.active::after {
-      width: 100%;
-    }
-
-    /* Hero */
-    header {
-      height: 100vh;
-      background: <img src="Assests\logo.png 10.jpg" alt="Driveway Detailing Logo" width="150" /> center/cover no-repeat;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      text-align: center;
-      padding: 0 1rem;
-    }
-    header::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: 0;
-    }
-    header .hero-content {
-      position: relative;
-      max-width: 900px;
-      z-index: 1;
-    }
-    header h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 3.8rem;
-      margin-bottom: 1rem;
-      letter-spacing: 2px;
-      text-shadow: 0 4px 10px rgba(0,0,0,0.7);
-    }
-    header p {
-      font-size: 1.3rem;
-      margin-bottom: 2rem;
-      font-weight: 500;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-    }
-    header .btn {
-      background: #4CAF50;
-      padding: 0.85rem 3rem;
-      color: #222;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border-radius: 40px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(247, 183, 51, 0.6);
-      transition: background 0.3s ease;
-    }
-    header .btn:hover {
-      background: #e1a12f;
-      color: #fff;
-    }
-
-    /* Sections common styles */
-    section {
-      padding: 5rem 2rem 3rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    section h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      font-size: 2.8rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: #222;
-    }
-
-    /* Packages Section */
-    #packages .package-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-      gap: 2rem;
-    }
-    #packages .package {
-      background: #fff;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 6px 15px rgb(0 0 0 / 0.1);
-      transition: transform 0.3s ease;
-      cursor: default;
-    }
-    #packages .package:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 25px rgb(0 0 0 / 0.15);
-    }
-    #packages .package h3 {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #4CAF50;
-    }
-    #packages .price {
-      font-weight: 700;
-      font-size: 1.6rem;
-      margin-bottom: 1rem;
-      color: #222;
-    }
-    #packages .package ul {
-      list-style: none;
-      padding-left: 0;
-      color: #555;
-    }
-    #packages .package ul li {
-      margin-bottom: 0.7rem;
-      font-weight: 500;
-    }
-
-    /* Gallery Section */
-    #gallery .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-      gap: 15px;
-    }
-    #gallery img {
-      width: 100%;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
-      object-fit: cover;
-      height: 180px;
-    }
-    #gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 25px rgb(0 0 0 / 0.15);
-    }
-
-  
-
-    /* Contact Section */
-    #contact {
-      background: #222;
-      color: #fff;
-      text-align: center;
-      padding: 4rem 2rem;
-      border-radius: 12px;
-      max-width: 700px;
-      margin: 0 auto 5rem;
-    }
-    #contact h2 {
-      color: #4CAF50;
-      margin-bottom: 2rem;
-    }
-    #contact p {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      font-weight: 500;
-    }
-    #contact a {
-      color: #4CAF50;
-      font-weight: 600;
-    }
-    #contact a:hover {
-      text-decoration: underline;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 1.5rem 1rem;
-      font-size: 0.9rem;
-      color: #888;
-      background: #f6f6f6;
-    }
-
-    /* Floating Contact Buttons */
-    .floating-contact {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      z-index: 10000;
-    }
-    .floating-contact a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 55px;
-      height: 55px;
-      border-radius: 50%;
-      color: white;
-      font-size: 28px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .whatsapp-btn {
-      background-color: #25D366;
-    }
-    .whatsapp-btn:hover {
-      background-color: #1da851;
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(37,211,102,0.7);
-    }
-    .instagram-btn {
-      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-    }
-    .instagram-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(214,36,159,0.7);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      nav ul {
-        display: none;
-      }
-      nav .menu-toggle {
-        display: block;
-        font-size: 1.5rem;
-        color: #fff;
-        cursor: pointer;
-      }
-      nav.active ul {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 60px;
-        right: 0;
-        background: rgba(0,0,0,0.9);
-        width: 200px;
-        padding: 1rem;
-        border-radius: 0 0 0 12px;
-      }
-      nav.active ul li {
-        margin-bottom: 1rem;
-      }
-      header h1 {
-        font-size: 2.5rem;
-      }
-      header p {
-        font-size: 1rem;
-      }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:#e9ecef;line-height:1.45}
+    .container{max-width:var(--container);margin:0 auto;padding:24px}
+    .site-header{position:sticky;top:0;background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.9));z-index:40;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:64px;height:64px;object-fit:contain}
+    .brand-text h1{margin:0;font-size:18px;letter-spacing:1px}
+    .sub{margin:0;color:var(--muted);font-size:12px}
+    .main-nav a{color:#fff;margin:0 10px;text-decoration:none;font-weight:600;font-size:14px}
+    .main-nav a:hover{text-decoration:underline}
+    .contact-quick .btn-whatsapp{background:var(--accent);color:#000;padding:8px 12px;border-radius:6px;text-decoration:none;font-weight:700}
+    .hero{background-image: url('assets/hero-bg.jpg'); background-size:cover;background-position:center;height:420px;display:flex;align-items:center;justify-content:center;position:relative}
+    .hero-overlay{background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6));width:100%;height:100%;display:flex;align-items:center}
+    .hero-content{padding:40px;color:#fff;text-align:center}
+    .hero h2{font-size:36px;margin:0 0 12px;color:var(--accent);letter-spacing:1px}
+    .lead{color:var(--muted);max-width:720px;margin:0 auto 18px}
+    .cta-row{display:flex;gap:12px;justify-content:center}
+    .btn-primary{background:var(--accent);color:#000;padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:700}
+    .btn-outline{background:transparent;color:#fff;padding:12px 18px;border-radius:8px;border:1px solid rgba(255,255,255,0.07);text-decoration:none}
+    .section{padding:54px 0}
+    .section-title{font-size:22px;margin-bottom:6px;color:#fff}
+    .section-sub{color:var(--muted);margin-bottom:18px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:18px}
+    .card{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+    .card img{width:100%;height:180px;object-fit:cover;display:block}
+    .card-body{padding:18px;flex:1;display:flex;flex-direction:column}
+    .pkg-title{margin:0 0 8px;color:var(--accent);font-weight:800}
+    .pkg-list{list-style:none;padding:0;margin:0 0 14px;color:var(--muted)}
+    .pkg-list li{padding:6px 0;border-bottom:1px dashed rgba(255,255,255,0.02)}
+    .card-foot{margin-top:auto}
+    .select-pkg{background:transparent;border:2px solid var(--accent);color:var(--accent);padding:10px 14px;border-radius:6px;cursor:pointer;font-weight:800}
+    .note{margin-top:18px;color:var(--muted);background:var(--glass);padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.02)}
+    .work-grid{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
+    .panel{background:var(--card);padding:16px;border-radius:10px;box-shadow:var(--shadow);margin-bottom:16px}
+    .selected-box{padding:12px;background:rgba(255,255,255,0.02);border-radius:6px;color:var(--muted)}
+    .addons-list label{display:block;padding:8px 6px;border-bottom:1px solid rgba(255,255,255,0.02);cursor:pointer}
+    .summary{padding:10px;background:rgba(0,0,0,0.35);border-radius:6px}
+    .summary .total{margin-top:8px;font-size:18px;color:var(--accent);font-weight:800}
+    .booking-actions{display:flex;gap:10px;margin-top:10px}
+    .work-right .booking-form label{display:block;color:var(--muted);margin-bottom:8px}
+    .booking-form input, .booking-form textarea{width:100%;padding:10px;margin-top:6px;border-radius:6px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:#fff}
+    .form-row{display:flex;gap:8px;margin-top:10px}
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+    .gallery-grid img{width:100%;height:160px;object-fit:cover;border-radius:6px;box-shadow:var(--shadow)}
+    .location-inner{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:center}
+    .loc-right iframe{width:100%;height:260px;border-radius:8px;border:0;box-shadow:var(--shadow)}
+    .site-footer{background:#050505;color:var(--muted);padding:28px 0;border-top:1px solid rgba(255,255,255,0.03)}
+    .footer-inner{display:flex;justify-content:space-between;gap:24px;align-items:flex-start}
+    .footer-bottom{background:#020202;padding:12px 0;margin-top:18px}
+    .small{font-size:12px;color:var(--muted)}
+    @media (max-width:980px){
+      .work-grid{grid-template-columns:1fr}
+      .location-inner{grid-template-columns:1fr}
+      .header-inner{flex-direction:column;gap:10px;align-items:flex-start}
+      .main-nav{display:none}
     }
   </style>
 </head>
 <body>
-
-  <nav id="navbar">
-    <div class="logo">Driveway Detailing</div>
-    <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
-    <ul>
-      <li><a href="#packages" class="active">Packages</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <header>
-    <div class="hero-content" data-aos="fade-up">
-      <h1>Driveway Detailing</h1>
-      <p>Mobile Car Wash & Detailing in Paarl / Wellington</p>
-      <a href="#contact" class="btn">Book Now</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <img src="assets/logo.png" alt="Driveway Detailing logo" class="logo"/>
+        <div class="brand-text">
+          <h1>Driveway Detailing</h1>
+          <p class="sub">Mobile Car Wash • Detailing est 2024</p>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="#packages">Packages</a>
+        <a href="#work">Book</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+        <a href="#location">Location</a>
+      </nav>
+      <div class="contact-quick">
+        <a class="btn-whatsapp" href="https://wa.me/27660642112" target="_blank">WhatsApp</a>
+      </div>
     </div>
   </header>
 
-  <section id="packages">
-    <h2>Our Packages</h2>
-    <div class="package-list">
-      <div class="package" data-aos="fade-up" data-aos-delay="100">
-        <h3>The Mountain Top</h3>
-        <div class="price">R 300,00</div>
-        <ul>
-          <li>Complete Wash</li>
-          <li>Full Interior Detailing</li>
-          <li>Tire Shine</li>
-          <li>Leather Conditioning</li>
-          <li>Paint / Wax Protection</li>
-        </ul>
-      </div>
-      <div class="package" data-aos="fade-up" data-aos-delay="200">
-        <h3>The Ark</h3>
-        <div class="price">R 250,00</div>
-        <ul>
-          <li>Basic Exterior Wash</li>
-          <li>Interior Vacuuming</li>
-          <li>Window Cleaning</li>
-          <li>Paint Protection</li>
-          <li>Tire Shine</li>
-        </ul>
-      </div>
-      <div class="package" data-aos="fade-up" data-aos-delay="300">
-        <h3>Engine Detailing</h3>
-        <div class="price">R 150,00</div>
-        <ul>
-          <li>Removes Dirt and Grease Build-up</li>
-          <li>Enhances Performance and Aesthetics</li>
-        </ul>
-      </div>
-      <div class="package" data-aos="fade-up" data-aos-delay="400">
-        <h3>Washes</h3>
-        <div class="price">R 150,00</div>
-        <ul>
-          <li>Wash / Dry Exterior</li>
-          <li>Interior Cleaning</li>
-        </ul>
+  <section class="hero">
+    <div class="hero-overlay">
+      <div class="container hero-content">
+        <h2>Professional Mobile Car Detailing</h2>
+        <p class="lead">Detailing with purpose: serving you with grace. We come to you — full exterior wash, interior detailing, paint protection & more.</p>
+        <div class="cta-row">
+          <a href="#work" class="btn-primary">Book Now</a>
+          <a href="#packages" class="btn-outline">See Packages</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="gallery">
-    <h2>Gallery</h2>
-    <div class="grid">
-      <img src="Assests\logo.png 1.png"alt="Car Wash 1"/>
-      <img src="Assests/"C:\Users\COLE MENTOOR\Downloads\drivewaySite\Assests\logo.png 2.png" alt="Car Wash 2" />
-      <img src="Assests"C:\Users\COLE MENTOOR\Downloads\drivewaySite\Assests\logo.png 5.png"="Car Wash 3" />
-     
+  <!-- Packages -->
+  <section id="packages" class="section">
+    <div class="container">
+      <h3 class="section-title">Packages Available</h3>
+      <p class="section-sub">Choose a package that suits your car — add-ons at R100 each.</p>
+      <div class="cards">
+        <article class="card">
+          <img src="assets/pkg-exterior.jpg" alt="The Ark">
+          <div class="card-body">
+            <h4 class="pkg-title">THE ARK — R250</h4>
+            <ul class="pkg-list">
+              <li>Basic exterior wash</li><li>Interior vacuuming</li><li>Window cleaning</li><li>Paint protection</li><li>Tire shine</li>
+            </ul>
+            <div class="card-foot"><button class="select-pkg" data-name="The Ark" data-price="250">Select</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="assets/pkg-full.jpg" alt="The Mountain Top">
+          <div class="card-body">
+            <h4 class="pkg-title">THE MOUNTAIN TOP — R300</h4>
+            <ul class="pkg-list">
+              <li>Complete wash</li><li>Full interior detailing</li><li>Tire shine & leather conditioning</li><li>Paint/wax protection</li>
+            </ul>
+            <div class="card-foot"><button class="select-pkg" data-name="The Mountain Top" data-price="300">Select</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img src="assets/pkg-engine.jpg" alt="Engine detailing">
+          <div class="card-body">
+            <h4 class="pkg-title">ENGINE DETAILING — R150</h4>
+            <ul class="pkg-list">
+              <li>Removes dirt & grease</li><li>Enhances performance & aesthetics</li>
+            </ul>
+            <div class="card-foot"><button class="select-pkg" data-name="Engine Detailing" data-price="150">Select</button></div>
+          </div>
+        </article>
+      </div>
+      <div class="note"><strong>Detailing add-ons</strong> at <strong>R100 per add-on</strong> — Pet hair & odour removal, Subscription packages, Express steam cleaning, Motorcycle cleaning, Full body buff, Boat cleaning, Wash/Dry exterior R150, Interior cleaning R150.</div>
     </div>
   </section>
 
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <p><strong>Phone:</strong> <a href="tel:+27660642112">+27 66 064 2112</a></p>
-    <p><strong>Email:</strong> <a href="mailto:ddmobilecarwash24@gmail.com">ddmobilecarwash24@gmail.com</a></p>
-    <p><strong>Instagram:</strong> <a href="https://www.instagram.com/driveway_detailing/" target="blank" rel="noopener">@_driveway_detailing</a></p>
-    <p><strong>Operating Area:</strong> Paarl / Wellington, South Africa</p>
+  <!-- Booking -->
+  <section id="work" class="section">
+    <div class="container work-grid">
+      <div class="work-left">
+        <h3 class="section-title">Book / Select Services</h3>
+        <div class="panel"><h4>Selected package</h4><div id="selected-package" class="selected-box">None selected</div></div>
+        <div class="panel"><h4>Add-ons</h4>
+          <div class="addons-list">
+            <label><input type="checkbox" class="addon-checkbox" data-name="Pet hair & odour removal" data-price="100"> Pet hair & odour removal</label>
+            <label><input type="checkbox" class="addon-checkbox" data-name="Express steam cleaning" data-price="100"> Express steam cleaning</label>
+            <label><input type="checkbox" class="addon-checkbox" data-name="Full body buff" data-price="100"> Full body buff</label>
+            <label><input type="checkbox" class="addon-checkbox" data-name="Motorcycle cleaning" data-price="100"> Motorcycle cleaning</label>
+            <label><input type="checkbox" class="addon-checkbox" data-name="Boat cleaning" data-price="100"> Boat cleaning</label>
+            <label><input type="checkbox" class="addon-checkbox" data-name="Wash/Dry exterior" data-price="150"> Wash/Dry exterior (R150)</label>
+            <label><input type="checkbox" class="addon-checkbox" data-name="Interior cleaning" data-price="150"> Interior cleaning (R150)</label>
+          </div>
+        </div>
+        <div class="panel">
+          <h4>Summary</h4>
+          <div class="summary"><div>Package: <span id="summary-package">—</span></div><div>Add-ons: <span id="summary-addons">—</span></div><div class="total">Total: R<span id="summary-total">0</span></div></div>
+          <div class="booking-actions"><a id="whatsapp-book" class="btn-primary" href="#" target="_blank">Message on WhatsApp</a><button id="clear-selection" class="btn-outline">Clear</button></div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer>
-    &copy; 2025 Driveway Detailing. All rights reserved.
+  <!-- Gallery -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <h3 class="section-title">Gallery</h3>
+      <div class="gallery-grid"><img src="assets/gallery1.jpg"><img src="assets/gallery2.jpg"><img src="assets/gallery3.jpg"><img src="assets/gallery4.jpg"></div>
+    </div>
+  </section>
+
+  <!-- Location -->
+  <section id="location" class="section">
+    <div class="container location-inner">
+      <div><h3 class="section-title">Our Service Area</h3><p>We are a mobile service. We'll come to you.</p></div>
+      <div><iframe src="https://www.google.com/maps/embed?pb=!1m18..." loading="lazy"></iframe></div>
+    </div>
+  </section>
+
+  <footer id="contact" class="site-footer">
+    <div class="container footer-inner"><div><p>© <span id="year"></span> Driveway Detailing</p></div></div>
   </footer>
 
-  <!-- Floating Contact Buttons -->
-  <div class="floating-contact">
-    <a href="https://wa.me/27660642112" target="_blank" aria-label="WhatsApp" class="whatsapp-btn" rel="noopener">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-    <a href="https://www.instagram.com/driveway_detailing/" target="_blank" aria-label="Instagram" class="instagram-btn" rel="noopener">
-      <i class="fab fa-instagram"></i>
-    </a>
-  </div>
-
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 800,
-      once: true
-    });
-
-    // Navbar scroll background
-    const navbar = document.getElementById('navbar');
-    const navLinks = navbar.querySelectorAll('ul li a');
-    const sections = [...document.querySelectorAll('section, header')];
-
-    window.addEventListener('scroll', () => {
-      if(window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
+    document.addEventListener('DOMContentLoaded',()=>{
+      const selectPkgBtns=document.querySelectorAll('.select-pkg');
+      const selectedPackageEl=document.getElementById('selected-package');
+      const summaryPackage=document.getElementById('summary-package');
+      const summaryAddons=document.getElementById('summary-addons');
+      const summaryTotal=document.getElementById('summary-total');
+      const addonCheckboxes=document.querySelectorAll('.addon-checkbox');
+      const whatsappBook=document.getElementById('whatsapp-book');
+      const clearBtn=document.getElementById('clear-selection');
+      let selectedPackage=null;let selectedAddons=[];
+      function renderSummary(){
+        if(selectedPackage){selectedPackageEl.textContent=${selectedPackage.name} — R${selectedPackage.price};summaryPackage.textContent=${selectedPackage.name} (R${selectedPackage.price});}else{selectedPackageEl.textContent='None selected';summaryPackage.textContent='—';}
+        if(selectedAddons.length){summaryAddons.textContent=selectedAddons.map(a=>${a.name} (R${a.price})).join(', ');}else{summaryAddons.textContent='—';}
+        const total=(selectedPackage?selectedPackage.price:0)+selectedAddons.reduce((s,a)=>s+a.price,0);summaryTotal.textContent=total;
+        const phone='27660642112';const message=Hello! I would like to book:%0APackage: ${selectedPackage?selectedPackage.name+' - R'+selectedPackage.price:'None'}%0AAdd-ons: ${selectedAddons.length?selectedAddons.map(a=>a.name).join(', '):'None'}%0ATotal: R${total};whatsappBook.href=https://wa.me/${phone}?text=${message};
       }
-
-      // Highlight active nav link
-      let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 80;
-        if(window.scrollY >= sectionTop) {
-          current = section.getAttribute('id') || 'hero';
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if(link.getAttribute('href').substring(1) === current) {
-          link.classList.add('active');
-        }
-      });
-    });
-
-    // Mobile menu toggle
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenu.addEventListener('click', () => {
-      navbar.classList.toggle('active');
-    });
-
-    // Smooth scroll for nav links
-    navLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetElement = targetId === 'hero' ? document.querySelector('header') : document.getElementById(targetId);
-        if(targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 70,
-            behavior: 'smooth'
-          });
-        }
-        navbar.classList.remove('active');
-      });
+      selectPkgBtns.forEach(btn=>{btn.addEventListener('click',()=>{const name=btn.dataset.name;const price=Number(btn.dataset.price);selectedPackage={name,price};selectPkgBtns.forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderSummary();});});
+      addonCheckboxes.forEach(chk=>{chk.addEventListener('change',()=>{const name=chk.dataset.name;const price=Number(chk.dataset.price);if(chk.checked){selectedAddons.push({name,price});}else{selectedAddons=selectedAddons.filter(a=>a.name!==name||a.price!==price);}renderSummary();});});
+      clearBtn.addEventListener('click',()=>{selectedPackage=null;selectedAddons=[];summaryTotal.textContent=0;summaryAddons.textContent='—';summaryPackage.textContent='—';selectedPackageEl.textContent='None selected';addonCheckboxes.forEach(c=>c.checked=false);selectPkgBtns.forEach(b=>b.classList.remove('active'));});
+      document.getElementById('year').textContent=new Date().getFullYear();
+      renderSummary();
     });
   </script>
-  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
 </body>
 </html>
